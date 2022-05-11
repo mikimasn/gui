@@ -1,18 +1,15 @@
 <template>
-
-<div id="head"></div>
 <router-view/>
 </template>
-
 <style lang="scss">
 body{
   background-color:rgb(44, 39, 39);
   margin:0px;
 }
 #head{
-  background-color: white;
+  background-color: rgb(22, 22, 22);
   margin:0px;
-  margin-bottom: 30px;
+  margin-bottom: 70px;
   width:100%;
   height: 70px;
   z-index:2021;

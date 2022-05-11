@@ -1,11 +1,13 @@
 <template>
-  <button id="login" @click="updateloading">Zaloguj</button>
+  <h1>Nie jesteś zalogowany</h1><br>
+  <p>Niestety nie obsługujemy anonimowych osób ponieważ nie wiemy kim są</p><br>
+  <p>Przedstaw się nam a może znajdziemy tutaj coś specjalnie dla ciebie</p>
 </template>
 
 <script>
 import config from '../config.json'
 export default {
-  name: 'HelloWorld',
+  name: 'NonLoggined',
   props: {
   },
   data(){
