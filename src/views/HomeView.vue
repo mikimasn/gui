@@ -1,8 +1,10 @@
 <template>
-<div id="head"><LoadingComp v-if="!is"/></div>
+<div id="head"><button v-if="is" @click = "plain=!plain" id="change_button">{{plain?"embed":"plain text"}}</button><LoadingComp v-if="!is"/></div>
   <div class="home">
     <NonLoggined v-if="!is"/>
-    <LogginedComp v-if="is"/>
+    
+    <LogginedComp v-if="is&&plain"/>
+    <EmbedEditor v-if="is&&!plain"/>
   </div>
 </template>
 
@@ -12,6 +14,7 @@ import LoadingComp from "@/components/LoadingComp.vue"
 import config from '../config.json'
 import NonLoggined from "@/components/NonLoginned.vue"
 import LogginedComp from "@/components/LoginnedComp.vue"
+import EmbedEditor from "@/components/EmbedComp.vue"
 function isloggined(){
   addEventListener("storage",()=>{
     window.location.reload();
@@ -38,11 +41,13 @@ export default {
   components: {
     LoadingComp,
     NonLoggined,
-    LogginedComp
+    LogginedComp,
+    EmbedEditor
   },
   data(){
     return{
-      is:false
+      is:false,
+      plain:true
     }
   },
   methods:{
@@ -53,3 +58,19 @@ export default {
   }
 }
 </script>
+<style>
+  #change_button{
+    right:30%;
+    position:relative;
+    height:100%;
+    width:100px;
+    background-color:rgb(22,22,22);
+    border:0px;
+    border-bottom: 5px solid black;
+    color:white;
+    font-size:22px;
+  }
+  #change_button:hover{
+    border-bottom: 5px solid aqua;
+  }
+</style>

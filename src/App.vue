@@ -14,6 +14,7 @@ body{
   height: 70px;
   z-index:2021;
   box-shadow:  20px 15px 20px 16px black;
+  position: sticky;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
