@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import config from '../config.json'
 export default {
   name: 'HelloWorld',
   props: {
@@ -18,7 +17,7 @@ export default {
   },
   methods:{
     updateloading(){
-      window.open(config.oauth2,"","width=500,height=800");
+      window.open("https://discord.com/api/oauth2/authorize?client_id=973972548612132984&redirect_uri=https%3A%2F%2Fgp-harmonogram.herokuapp.com%2Flogin&response_type=code&scope=identify%20guilds.members.read","","width=500,height=800");
       
     }
   },

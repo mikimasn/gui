@@ -25,7 +25,6 @@ function isloggined(){
         })
         .then(async response=>{
           var json = await response.json()
-          console.log(json)
           this.$data.is=json.auth;
         })
         .catch(()=>{

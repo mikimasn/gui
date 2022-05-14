@@ -15,10 +15,9 @@
   </div>
 </template>
 <script>
-import config from '../config.json'
 async function isloggined(ele){
   var string = window.location.search.split("=");
-  fetch(config.api+`/login?code=${string[1]}`).then(async res=>{
+  fetch("https://gpharmonogramapi.herokuapp.com"+`/login?code=${string[1]}`).then(async res=>{
     if(res.status==400){
       ele.is=false;
       ele.waiting=false;
