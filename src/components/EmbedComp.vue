@@ -7,11 +7,11 @@
     <textarea class="embedinput" id="descinput" :style="cssVars" @keydown="event=>desc=event.target.value" @blur=" event=>desc=event.target.value" placeholder="Description"/><br>
     <div v-for="(item,index) in fields" :key="item" class="field">
       <input class="embedinput fieldinput fieldname" @keydown="event=>fields[index].name=event.target.value" @blur=" event=>fields[index].name=event.target.value" :value="item.name" placeholder="Name"/>
-      <input class="embedinput fieldinput fielddesc" @keydown="event=>fields[index].desc=event.target.value" @blur=" event=>fields[index].desc=event.target.value" :value="item.desc" placeholder="Description"/>
-      <input class="fieldinline" @change="event=>fields[index].inline=event.target.value" type="checkbox" title="inline"/>
+      <input class="embedinput fieldinput fielddesc" @keydown="event=>fields[index].value=event.target.value" @blur=" event=>fields[index].value=event.target.value" :value="item.value" placeholder="Description"/>
+      <input class="fieldinline" @change="event=>fields[index].inline=event.target.value=='on'" type="checkbox" title="inline"/>
       <button class="fieldremove" @click="fields.splice(index,1)">x</button>
     </div>
-    <button id="addfield" @click="fields.push({name:'',desc:'',inline:true})">Add field</button>
+    <button id="addfield" @click="fields.push({name:'',value:'',inline:true})">Add field</button>
   </div>
   <button id="wyslij" @click="updateloading()">Wyślij!</button>
 </template>
@@ -34,6 +34,10 @@ export default {
     updateloading(){
       var token = localStorage.getItem("token");
       if(this.title!=""&&this.desc!=""&&this.color!=""){
+        var fie=[]
+        this.fields.forEach(ele=>{
+          fie.push(JSON.stringify(ele));
+        })
         fetch(config.api+"/sendembed",{
           headers:{
             Authorization:token
@@ -41,7 +45,7 @@ export default {
           body:new URLSearchParams({
             color:this.color,
             desc:this.desc,
-            fields:this.fields,
+            fields:fie,
             title:this.title
           }),
           method:"POST"
@@ -69,6 +73,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+::placeholder{
+  color:rgb(27, 27, 27)
+}
 #pole{
   width: 1200px;
   height: 300px;
